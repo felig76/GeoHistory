@@ -74,15 +74,15 @@ public class Formulario extends JFrame {
         String linkWiki = linkWikiField.getText();
 
         try (Connection connection = Conexion.getConnection()) {
-            String sql = "INSERT INTO eventos (nombre_corto, nombre, fecha_inicio, fecha_fin, descripcion, orden_relevancia, coordenadas, link_wiki) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO eventos (nombre_corto, nombre_completo, fecha_inicio, fecha_fin, orden_relevancia, coordenadas, descripcion, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, nombreCorto);
             statement.setString(2, nombre);
             statement.setString(3, fechaInicio);
             statement.setString(4, fechaFin);
-            statement.setString(5, descripcion);
-            statement.setInt(6, Integer.parseInt(ordenRelevancia));
-            statement.setString(7, coordenadas);
+            statement.setInt(5, Integer.parseInt(ordenRelevancia));
+            statement.setString(6, coordenadas);
+            statement.setString(7, descripcion);
             statement.setString(8, linkWiki);
             statement.executeUpdate();
             JOptionPane.showMessageDialog(this, "Evento guardado correctamente.");
