@@ -1,12 +1,13 @@
-import React from "react";
-import VistaMapa from "./componenteVistaMapa/VistaMapa.jsx";
+import React from 'react';
+import Map from './components/map.jsx';
+import './App.css';
 
 function App() {
-  return (
+  return(
     <div className="App">
-      <VistaMapa />
+      <Map/>
     </div>
-  );
+  )
 }
 
 export default App;
