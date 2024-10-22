@@ -9,8 +9,10 @@ const EventPanel = ({ event, onClose }) => {
     <div className="info-panel">
       <button onClick={onClose}>X</button>
       <main>
-        <h2>{event.name}</h2>
-        <p>{event.description}</p>
+        <h2>{event.nombre_completo} </h2>
+        <h3>{event.fecha_inicio} - {event.fecha_fin}</h3>
+        <p>{event.descripcion}</p>
+        <p id='linkEvento'>{event.link}</p>
       </main>
     </div>
   );
