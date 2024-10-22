@@ -4,20 +4,31 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import './map.css';
 import customMarker from '../assets/marker.png';
 import EventPanel from './EventPanel.jsx';
+import axios from 'axios';
 
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   maptilersdk.config.apiKey = 'D3W7mM6N8VLQzfLbmthY';
 
-
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [events, setEvents] = useState([]);
 
-  const events = [
+  /* const events = [
     { id: 1, name: "Batalla de Waterloo", shortName: "Batalla de Waterloo", coordinates: [4.4187, 50.6821], description: "Ocurrió en 1815, poniendo fin a las guerras napoleónicas." },
     { id: 2, name: "Descubrimiento de América", shortName: "Descubrimiento de américa", coordinates: [-72.195689,19.764901], description: "Cristóbal Colón llega a América en 1492." },
     { id: 3, name: "Desembarco de Normandía", shortName: "Día D", coordinates: [-0.611642, 49.339818], description: "Desembarco de Normandía en 1944 durante la Segunda Guerra Mundial." }
-  ];
+  ]; */
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:5000/api/eventos')
+      .then(response => {
+        setEvents(response.data);
+      })
+      .catch(error => {
+        console.error("Error al obtener los eventos:", error);
+      });
+  }, []);
   
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
@@ -33,7 +44,7 @@ export default function Map() {
       const marker = new maptilersdk.Marker({
         element: document.createElement('div') // Crea un contenedor div para el icono personalizado
       })
-        .setLngLat(event.coordinates)
+        .setLngLat(event.coordenadas)
         .addTo(map.current);
 
       const markerElement = marker.getElement(); // Accede al elemento DOM del marcador
@@ -50,7 +61,7 @@ export default function Map() {
       // Crear el label del evento
       const label = document.createElement('span');
       label.className = 'marker-label';
-      label.innerText = event.shortName;
+      label.innerText = event.nombre_corto;
 
       // Añadir el label al elemento del marcador
       markerElement.appendChild(label);
