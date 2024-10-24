@@ -9,19 +9,13 @@ import axios from 'axios';
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  maptilersdk.config.apiKey = 'D3W7mM6N8VLQzfLbmthY';
+  maptilersdk.config.apiKey = 'h61PKvbK3NMMfF5kGaf3';
 
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
 
-  /* const events = [
-    { id: 1, name: "Batalla de Waterloo", shortName: "Batalla de Waterloo", coordinates: [4.4187, 50.6821], description: "Ocurrió en 1815, poniendo fin a las guerras napoleónicas." },
-    { id: 2, name: "Descubrimiento de América", shortName: "Descubrimiento de américa", coordinates: [-72.195689,19.764901], description: "Cristóbal Colón llega a América en 1492." },
-    { id: 3, name: "Desembarco de Normandía", shortName: "Día D", coordinates: [-0.611642, 49.339818], description: "Desembarco de Normandía en 1944 durante la Segunda Guerra Mundial." }
-  ]; */
-
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/api/eventos')
+    axios.get('http://localhost/api/eventos')
       .then(response => {
         setEvents(response.data);
       })
@@ -35,7 +29,7 @@ export default function Map() {
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.BACKDROP.DARK,
+      style: "19d00ef7-e89d-48a7-ba5e-f7521217a2bf",
       center: [0, 0],
       zoom: 2
     });
