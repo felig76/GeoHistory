@@ -15,17 +15,18 @@ export default function Map() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost/api/eventos')
+    axios.get('http://localhost:3000/api/eventos')
       .then(response => {
         setEvents(response.data);
+        console.log('Eventos cargados:', response.data); // Verificar la data recibida
       })
       .catch(error => {
         console.error("Error al obtener los eventos:", error);
       });
   }, []);
-  
+
   useEffect(() => {
-    if (map.current) return; // stops map from intializing more than once
+    if (map.current) return;
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
@@ -33,37 +34,34 @@ export default function Map() {
       center: [0, 0],
       zoom: 2
     });
+  }, []);
+
+  useEffect(() => {
+    if (!map.current || events.length === 0) return;
+
+    console.log('Eventos en el mapa:', events); // Verificar el contenido de events
 
     events.forEach(event => {
       const marker = new maptilersdk.Marker({
-        element: document.createElement('div') // Crea un contenedor div para el icono personalizado
+        element: document.createElement('div')
       })
         .setLngLat(event.coordenadas)
         .addTo(map.current);
 
-      const markerElement = marker.getElement(); // Accede al elemento DOM del marcador
-      markerElement.style.backgroundImage = `url(${customMarker})`; // Aplica la imagen de fondo
-      markerElement.style.backgroundSize = 'contain'; // Asegura que la imagen se ajuste
-      markerElement.style.width = '0.5rem'; // Ajusta el tamaño del marcador
-      markerElement.style.height = '0.5rem'; // Ajusta el tamaño del marcador
+      const markerElement = marker.getElement();
+      markerElement.style.backgroundImage = `url(${customMarker})`;
+      markerElement.style.backgroundSize = 'contain';
+      markerElement.style.width = '0.5rem';
+      markerElement.style.height = '0.5rem';
 
-      // Manejar clic en el marcador
-      marker.getElement().addEventListener('click', () => {
-        setSelectedEvent(event); // Cambia el estado para mostrar el panel de info
-      });
-
-      // Crear el label del evento
-      const label = document.createElement('span');
-      label.className = 'marker-label';
-      label.innerText = event.nombre_corto;
-
-      // Añadir el label al elemento del marcador
-      markerElement.appendChild(label);
-
-      // Manejar clic en el marcador
       markerElement.addEventListener('click', () => {
         setSelectedEvent(event);
       });
+
+      const label = document.createElement('span');
+      label.className = 'marker-label';
+      label.innerText = event.nombre_corto;
+      markerElement.appendChild(label);
     });
   }, [events]);
 
