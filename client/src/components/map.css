@@ -19,19 +19,19 @@
 }
 
 .marker-label {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     cursor: pointer;
     position: absolute;
-    bottom: 100%; /* Coloca la etiqueta encima del marcador */
-    left: 50%; /* Centra la etiqueta */
-    transform: translateX(-50%); /* Ajusta el centrado */
-    background: rgba(0, 0, 0, 0.308); /* Fondo blanco con opacidad */
-    padding: 0.25rem; /* Espaciado interno */
-    border-radius: 0.5rem; /* Bordes redondeados */
-    font-size: 0.80rem; /* Tamaño de fuente */
-    white-space: nowrap; /* Evita que el texto se divida */
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0);
+    border-radius: 0.5rem;
+    white-space: nowrap;
     color: rgb(226, 226, 226);
-    transition: all 0.25s ease-in-out 0.05s;
+    transition: all 0.15s ease-in-out 0.05s;
 }
 .marker-label:hover {
     color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.26);
 }

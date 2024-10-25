@@ -12,18 +12,13 @@ const EventPanel = ({ event, onClose }) => {
     return link;
   };
 
-  const formatDate = (dateString) => {
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('es-ES', options);
-  };
-
   return (
     <div className="info-panel">
       <button onClick={onClose}>X</button>
       <main>
         <h2>{event.nombre_completo}</h2>
         <h3>
-          {formatDate(event.fecha_inicio)} - {event.fecha_fin ? formatDate(event.fecha_fin) : ''}
+          {event.fecha}
         </h3>
         <p>{event.descripcion}</p>
         <a 

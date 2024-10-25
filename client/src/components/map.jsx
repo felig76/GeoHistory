@@ -31,15 +31,13 @@ export default function Map() {
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
       style: "19d00ef7-e89d-48a7-ba5e-f7521217a2bf",
-      center: [0, 0],
-      zoom: 2
+      center: [10, 27],
+      zoom: 1.3
     });
   }, []);
 
   useEffect(() => {
     if (!map.current || events.length === 0) return;
-
-    console.log('Eventos en el mapa:', events); // Verificar el contenido de events
 
     events.forEach(event => {
       const marker = new maptilersdk.Marker({
@@ -51,8 +49,8 @@ export default function Map() {
       const markerElement = marker.getElement();
       markerElement.style.backgroundImage = `url(${customMarker})`;
       markerElement.style.backgroundSize = 'contain';
-      markerElement.style.width = '0.5rem';
-      markerElement.style.height = '0.5rem';
+      markerElement.style.width = `${(event.orden_relevancia * 0.06) + 0.4}rem`;
+      markerElement.style.height = `${(event.orden_relevancia * 0.06) + 0.4}rem`;
 
       markerElement.addEventListener('click', () => {
         setSelectedEvent(event);
@@ -61,6 +59,9 @@ export default function Map() {
       const label = document.createElement('span');
       label.className = 'marker-label';
       label.innerText = event.nombre_corto;
+      label.style.fontSize = `${(event.orden_relevancia * 0.03) + 1.2}rem`;
+      label.style.fontWeight = `${Math.min(900, Math.max(100, (event.orden_relevancia * 100) + 200))}`;
+      label.style.padding = `${Math.min(1, (event.orden_relevancia * 0.02) + 0.5)}rem`;
       markerElement.appendChild(label);
     });
   }, [events]);
