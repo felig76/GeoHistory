@@ -1,12 +1,14 @@
 /* EventPanel.css */
 .info-panel {
     position: fixed; /* Cambia a fixed para que el panel permanezca visible al hacer scroll */
-    top: 0;
-    right: 0%; /* Coloca el panel a la derecha */
+    top: 1%;
+    right: 3%; /* Coloca el panel a la derecha */
     width: 25%; /* Ocupar un tercio de la pantalla */
-    height: 100%;
+    height: 90%;
     background-color: rgba(0, 0, 0, 0.705); /* Fondo semi-transparente */
     padding: 0.25rem;
+    margin: 1rem;
+    border-radius: 1rem;
 }
 
 .info-panel main {
@@ -31,4 +33,27 @@
 }
 .info-panel button:hover {
     background-color: rgb(255, 0, 0);
+}
+
+/* EventPanel.css */
+#linkEvento {
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    color: rgb(162, 0, 255); /* Color del texto */
+    text-decoration: none; /* Sin subrayado por defecto */
+}
+  
+#linkEvento::after {
+    content: ''; /* Contenido vacío para el pseudo-elemento */
+    position: absolute; /* Posición absoluta para el subrayado */
+    left: 0; /* Alinear a la izquierda */
+    bottom: 0; /* Posicionar en la parte inferior */
+    width: 100%; /* Ancho completo del enlace */
+    height: 2px; /* Altura del subrayado */
+    background-color: rgb(162, 0, 255); /* Color del subrayado */
+    transform: scaleX(0); /* Escalar el subrayado a 0 al inicio */
+    transition: transform 0.3s ease; /* Transición suave */
+}
+
+#linkEvento:hover::after {
+    transform: scaleX(1); /* Escalar a 1 al pasar el ratón */
 }

@@ -24,7 +24,7 @@
     bottom: 100%; /* Coloca la etiqueta encima del marcador */
     left: 50%; /* Centra la etiqueta */
     transform: translateX(-50%); /* Ajusta el centrado */
-    background: rgba(0, 0, 0, 0.479); /* Fondo blanco con opacidad */
+    background: rgba(0, 0, 0, 0.308); /* Fondo blanco con opacidad */
     padding: 0.25rem; /* Espaciado interno */
     border-radius: 0.5rem; /* Bordes redondeados */
     font-size: 0.80rem; /* Tamaño de fuente */
