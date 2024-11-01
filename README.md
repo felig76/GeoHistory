@@ -1,6 +1,6 @@
 # GeoHistory
 
-Aplicación web que permite visualizar eventos históricos en un mapa interactivo utilizando la API de MapTiler.
+Explora los eventos clave de la historia humana alrededor del mundo en un mapa interactivo.
 
 ## Contenido
 
@@ -11,15 +11,16 @@ Aplicación web que permite visualizar eventos históricos en un mapa interactiv
 
 ### Descripción
 
-GeoHistory permite a los usuarios explorar eventos históricos en un mapa interactivo. Al hacer clic en los marcadores del mapa, los usuarios pueden acceder a información detallada sobre cada evento.
+GeoHistory permite visualizar eventos históricos globales en un mapa interactivo. Cada marcador en el mapa representa un evento significativo, y al hacer clic en ellos, puedes acceder a información detallada, incluyendo fechas, ubicaciones y contexto histórico.
 
 ### Instalación
 
 1. **Clona el repositorio:**
 
    ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
-   cd tu_repositorio
+   git clone https://github.com/felig76/GeoHistory.git
+   cd GeoHistory
+
    ```
 
 2. **Instala las dependencias:**
@@ -33,7 +34,7 @@ GeoHistory permite a los usuarios explorar eventos históricos en un mapa intera
    ```bash
    npm start
    ```
-   La aplicación estará disponible en http://localhost:3000.
+   La aplicación estará disponible en http://localhost:5137.
 
 ### Uso
 
