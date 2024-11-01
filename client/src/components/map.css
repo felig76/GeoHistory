@@ -29,7 +29,7 @@
     border-radius: 0.5rem;
     white-space: nowrap;
     color: rgb(226, 226, 226);
-    transition: all 0.15s ease-in-out 0.05s;
+    transition: all 0.1s ease-in-out 0.05s;
 }
 .marker-label:hover {
     color: rgb(255, 255, 255);

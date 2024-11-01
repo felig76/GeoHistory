@@ -38,10 +38,10 @@
 /* EventPanel.css */
 #linkEvento {
     position: relative; /* Necesario para posicionar el pseudo-elemento */
-    color: rgb(162, 0, 255); /* Color del texto */
+    color: rgb(141, 41, 255); /* Color del texto */
     text-decoration: none; /* Sin subrayado por defecto */
 }
-  
+
 #linkEvento::after {
     content: ''; /* Contenido vacío para el pseudo-elemento */
     position: absolute; /* Posición absoluta para el subrayado */
@@ -49,7 +49,7 @@
     bottom: 0; /* Posicionar en la parte inferior */
     width: 100%; /* Ancho completo del enlace */
     height: 2px; /* Altura del subrayado */
-    background-color: rgb(162, 0, 255); /* Color del subrayado */
+    background-color: rgb(141, 41, 255); /* Color del subrayado */
     transform: scaleX(0); /* Escalar el subrayado a 0 al inicio */
     transition: transform 0.3s ease; /* Transición suave */
 }
