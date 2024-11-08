@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS eventos_historicos;
+
 CREATE DATABASE eventos_historicos;
 
 USE eventos_historicos;
@@ -33,7 +35,7 @@ INSERT INTO eventos (id, nombre_corto, nombre_completo, fecha, orden_relevancia,
 (17, "Guerra del Opio", "Conflicto entre China y Gran Bretaña", "1839 - 1842", 7, '104.1954, 35.8617', "Un conflicto que marcó el inicio de la intervención europea en China y el comercio de opio.", "https://es.wikipedia.org/wiki/Guerra_del_Opio"),
 (18, "Revolución de los Claveles", "Revolución pacífica en Portugal", "25/04/1974", 8, '-9.1394, 38.7223', "Un levantamiento que terminó con la dictadura en Portugal sin derramamiento de sangre.", "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_de_los_Claveles"),
 (19, "Descubrimiento del fuego", "Control del fuego por los humanos", "~1.000.000 a.C.", 9, '0.0000, 0.0000', "Un avance crucial para la humanidad que permitió la cocción de alimentos y protección.", "https://es.wikipedia.org/wiki/Historia_del_fuego"),
-(20, "Invención del papel", "Invención del papel en China", "~105 d.C.", 10, '104.1954, 35.8617', "Un avance significativo que revolucionó la comunicación y el registro de información.", "https://es.wikipedia.org/wiki/Papel"),
+(20, "Invención del papel", "Invención del papel en China", "~105 d.C.", 10, '123.1954, 55.8617', "Un avance significativo que revolucionó la comunicación y el registro de información.", "https://es.wikipedia.org/wiki/Papel"),
 (21, "Guerra Civil Americana", "Conflicto entre los estados del norte y del sur de EE.UU.", "1861 - 1865", 1, '-95.7129, 37.0902', "Un conflicto que determinó el futuro de la esclavitud y la unión del país.", "https://es.wikipedia.org/wiki/Guerra_Civil_de_los_Estados_Unidos"),
 (22, "Revolución Mexicana", "Movimientos armados para derrocar a la dictadura de Porfirio Díaz", "1910 - 1920", 2, '-102.5528, 23.6345', "Una serie de luchas políticas y sociales que transformaron a México.", "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_Mexicana"),
 (23, "La Gran Depresión", "Crisis económica mundial", "1929 - 1939", 3, '-97.7431, 30.2672', "Una crisis económica que afectó a países de todo el mundo, iniciando en EE.UU.", "https://es.wikipedia.org/wiki/Gran_Depresi%C3%B3n"),
@@ -42,7 +44,7 @@ INSERT INTO eventos (id, nombre_corto, nombre_completo, fecha, orden_relevancia,
 (26, "Primera Misión Tripulada al Espacio", "Yuri Gagarin se convierte en el primer hombre en el espacio", "12/04/1961", 6, '30.2672, 59.9343', "El primer viaje humano al espacio, un hito en la carrera espacial.", "https://es.wikipedia.org/wiki/Yuri_Gagarin"),
 (27, "Caída del Muro de Berlín", "Fin de la división de Alemania", "9/11/1989", 7, '13.4050, 52.5200', "La caída del muro que separaba Berlín Oriental y Occidental, simbolizando el fin de la Guerra Fría.", "https://es.wikipedia.org/wiki/Ca%C3%ADda_del_Muro_de_Berl%C3%ADn"),
 (28, "11 de septiembre", "Ataques terroristas en EE.UU.", "11/09/2001", 8, '-74.0060, 40.7128', "Una serie de ataques que cambiaron la política y la seguridad global en el siglo XXI.", "https://es.wikipedia.org/wiki/Atentados_del_11_de_septiembre_de_2001"),
-(29, "Covid-19", "Pandemia global", "2019 - presente", 9, '0.0000, 0.0000', "Una pandemia que ha impactado la salud, la economía y la vida cotidiana en todo el mundo.", "https://es.wikipedia.org/wiki/Pandemia_de_COVID-19"),
+(29, "Covid-19", "Pandemia global", "2019 - presente", 9, '130.0000, -12.0000', "Una pandemia que ha impactado la salud, la economía y la vida cotidiana en todo el mundo.", "https://es.wikipedia.org/wiki/Pandemia_de_COVID-19"),
 (30, "Inundación de La Plata", "Inundación en La Plata, Argentina", "2/04/2013", 11, '-58.0012, -34.9214', "Una de las inundaciones más devastadoras en la historia de La Plata, con más de 100 mm de lluvia en una hora, causando severos daños materiales y la muerte de al menos 89 personas.", "https://es.wikipedia.org/wiki/Inundaci%C3%B3n_en_La_Plata_de_2013"),
 (31, "Independencia de Madagascar", "Madagascar se convierte en un país independiente de Francia", "26/06/1960", 1, '46.8691, -18.7669', "La independencia de Madagascar marcó el fin de un largo periodo de colonización francesa.", "https://es.wikipedia.org/wiki/Independencia_de_Madagascar"),
 (32, "Independencia de Papua Nueva Guinea", "Papua Nueva Guinea se independiza de Australia", "16/09/1975", 2, '144.2687, -6.3145', "El país se convierte en un estado independiente tras años de tutela australiana.", "https://es.wikipedia.org/wiki/Independencia_de_Papua_Nueva_Guinea"),
@@ -52,6 +54,5 @@ INSERT INTO eventos (id, nombre_corto, nombre_completo, fecha, orden_relevancia,
 (36, "Revolución de Argelia", "Lucha por la independencia de Argelia de Francia", "1954 - 1962", 6, '3.0588, 36.7538', "Un conflicto que resultó en la independencia de Argelia tras años de colonización francesa.", "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_argelina"),
 (37, "Guerra del Opio", "Conflicto entre China y Gran Bretaña", "1839 - 1842", 7, '104.1954, 35.8617', "Un conflicto que marcó el inicio de la intervención europea en China y el comercio de opio.", "https://es.wikipedia.org/wiki/Guerra_del_Opio"),
 (38, "Revolución de los Claveles", "Revolución pacífica en Portugal", "25/04/1974", 8, '-9.1394, 38.7223', "Un levantamiento que terminó con la dictadura en Portugal sin derramamiento de sangre.", "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_de_los_Claveles"),
-(39, "Descubrimiento del fuego", "Control del fuego por los humanos", "~1.000.000 a.C.", 9, '0.0000, 0.0000', "Un avance crucial para la humanidad que permitió la cocción de alimentos y protección.", "https://es.wikipedia.org/wiki/Historia_del_fuego"),
-(40, "Invención del papel", "Invención del papel en China", "~105 d.C.", 10, '104.1954, 35.8617', "Un avance significativo que revolucionó la comunicación y el registro de información.", "https://es.wikipedia.org/wiki/Papel");
+(39, "Descubrimiento del fuego", "Control del fuego por los humanos", "~1.000.000 a.C.", 9, '30.0000, 40.0000', "Un avance crucial para la humanidad que permitió la cocción de alimentos y protección.", "https://es.wikipedia.org/wiki/Historia_del_fuego"),
 ;
