@@ -54,5 +54,5 @@ INSERT INTO eventos (id, nombre_corto, nombre_completo, fecha, orden_relevancia,
 (36, "Revolución de Argelia", "Lucha por la independencia de Argelia de Francia", "1954 - 1962", 6, '3.0588, 36.7538', "Un conflicto que resultó en la independencia de Argelia tras años de colonización francesa.", "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_argelina"),
 (37, "Guerra del Opio", "Conflicto entre China y Gran Bretaña", "1839 - 1842", 7, '104.1954, 35.8617', "Un conflicto que marcó el inicio de la intervención europea en China y el comercio de opio.", "https://es.wikipedia.org/wiki/Guerra_del_Opio"),
 (38, "Revolución de los Claveles", "Revolución pacífica en Portugal", "25/04/1974", 8, '-9.1394, 38.7223', "Un levantamiento que terminó con la dictadura en Portugal sin derramamiento de sangre.", "https://es.wikipedia.org/wiki/Revoluci%C3%B3n_de_los_Claveles"),
-(39, "Descubrimiento del fuego", "Control del fuego por los humanos", "~1.000.000 a.C.", 9, '30.0000, 40.0000', "Un avance crucial para la humanidad que permitió la cocción de alimentos y protección.", "https://es.wikipedia.org/wiki/Historia_del_fuego"),
+(39, "Descubrimiento del fuego", "Control del fuego por los humanos", "~1.000.000 a.C.", 9, '30.0000, 40.0000', "Un avance crucial para la humanidad que permitió la cocción de alimentos y protección.", "https://es.wikipedia.org/wiki/Historia_del_fuego")
 ;
