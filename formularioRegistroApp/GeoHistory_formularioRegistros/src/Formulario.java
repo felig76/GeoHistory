@@ -1,16 +1,20 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 public class Formulario extends JFrame {
     private JTextField nombreCortoField;
     private JTextField nombreField;
-    private JTextField fechaInicioField;
-    private JTextField fechaFinField;
+    private JTextField fechaField;
     private JTextField descripcionField;
     private JTextField ordenRelevanciaField;
     private JTextField coordenadasField;
@@ -25,8 +29,7 @@ public class Formulario extends JFrame {
         // Crear campos de texto
         nombreCortoField = new JTextField();
         nombreField = new JTextField();
-        fechaInicioField = new JTextField();
-        fechaFinField = new JTextField();
+        fechaField = new JTextField();
         descripcionField = new JTextField();
         ordenRelevanciaField = new JTextField();
         coordenadasField = new JTextField();
@@ -46,10 +49,8 @@ public class Formulario extends JFrame {
         add(nombreCortoField);
         add(new JLabel("Nombre:"));
         add(nombreField);
-        add(new JLabel("Fecha Inicio:"));
-        add(fechaInicioField);
-        add(new JLabel("Fecha Fin:"));
-        add(fechaFinField);
+        add(new JLabel("Fecha:"));
+        add(fechaField);
         add(new JLabel("Descripción:"));
         add(descripcionField);
         add(new JLabel("Orden de Relevancia:"));
@@ -66,24 +67,22 @@ public class Formulario extends JFrame {
     private void guardarEvento() {
         String nombreCorto = nombreCortoField.getText();
         String nombre = nombreField.getText();
-        String fechaInicio = fechaInicioField.getText();
-        String fechaFin = fechaFinField.getText();
+        String fecha = fechaField.getText();
         String descripcion = descripcionField.getText();
         String ordenRelevancia = ordenRelevanciaField.getText();
         String coordenadas = coordenadasField.getText();
         String linkWiki = linkWikiField.getText();
 
         try (Connection connection = Conexion.getConnection()) {
-            String sql = "INSERT INTO eventos (nombre_corto, nombre_completo, fecha_inicio, fecha_fin, orden_relevancia, coordenadas, descripcion, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO eventos (nombre_corto, nombre_completo, fecha, orden_relevancia, coordenadas, descripcion, link) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, nombreCorto);
             statement.setString(2, nombre);
-            statement.setString(3, fechaInicio);
-            statement.setString(4, fechaFin);
-            statement.setInt(5, Integer.parseInt(ordenRelevancia));
-            statement.setString(6, coordenadas);
-            statement.setString(7, descripcion);
-            statement.setString(8, linkWiki);
+            statement.setString(3, fecha);
+            statement.setInt(4, Integer.parseInt(ordenRelevancia));
+            statement.setString(5, coordenadas);
+            statement.setString(6, descripcion);
+            statement.setString(7, linkWiki);
             statement.executeUpdate();
             JOptionPane.showMessageDialog(this, "Evento guardado correctamente.");
         } catch (SQLException ex) {
