@@ -24,15 +24,15 @@ server.use(cors({
 }));
 
 server.get('/api/eventos', (req, res) => {
-    const query = 'SELECT * FROM eventos';
+    const query = 'CALL consultar_eventos()'; // Cambia a tu stored procedure
     db.query(query, (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
-        // Formatear las coordenadas como un array de números
-        const formattedResults = results.map(event => ({
+        // Acceder a results[0] para obtener los datos reales
+        const formattedResults = results[0].map(event => ({
             ...event,
-            coordenadas: event.coordenadas.split(',').map(Number) // Convierte las coordenadas a un array de números
+            coordenadas: event.coordenadas ? event.coordenadas.split(',').map(Number) : [] // Maneja casos de coordenadas nulas
         }));
         res.json(formattedResults);
     });

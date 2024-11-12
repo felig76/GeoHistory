@@ -15,6 +15,8 @@ CREATE TABLE eventos (
     link VARCHAR(255) NOT NULL
 );
 
+CREATE PROCEDURE `consultar_eventos`() NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER SELECT * FROM eventos;
+
 INSERT INTO eventos (id, nombre_corto, nombre_completo, fecha, orden_relevancia, coordenadas, descripcion, link) VALUES
 (1, "Batalla de Waterloo", "Batalla de Waterloo", "18/06/1815", 1, '4.4187, 50.6821', "La batalla que culminó con la derrota de Napoleón Bonaparte, poniendo fin a las Guerras Napoleónicas y marcando un cambio crucial en la historia de Europa.", "https://es.wikipedia.org/wiki/Batalla_de_Waterloo"),
 (2, "Descubrimiento de América", "Primer viaje de Cristóbal Colón a América", "12/10/1492", 2, '-72.195689, 19.764901', "Cristóbal Colón llega al continente americano, un hito que transformó las relaciones entre Europa y las Américas y dio inicio a una nueva era de exploración.", "https://es.wikipedia.org/wiki/Descubrimiento_de_Am%C3%A9rica"),
