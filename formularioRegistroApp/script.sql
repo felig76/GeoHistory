@@ -15,6 +15,24 @@ CREATE TABLE eventos (
     link VARCHAR(255) NOT NULL
 );
 
+DECLARE longitud;
+DECLARE latitud;
+
+SET longitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', 1) AS FLOAT);
+SET latitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', -1) AS FLOAT);
+
+IF longitud < -90 || longitud > 90 || latitud < -90 || latitud > 90 THEN
+	SET longitud = 0.0000;
+    SET latitud = 0.0000;
+END IF;
+
+DECLARE orden_relevancia;
+SET orden_relevancia = NEW.orden_relevancia;
+
+IF NEW.orden_relevancia < 1 || NEW.orden_relevancia > 20 THEN
+	SET orden_relevancia = 5;
+END IF;
+
 CREATE PROCEDURE `consultar_eventos`() NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER SELECT * FROM eventos;
 
 INSERT INTO eventos (id, nombre_corto, nombre_completo, fecha, orden_relevancia, coordenadas, descripcion, link) VALUES
