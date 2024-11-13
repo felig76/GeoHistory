@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import util.Conexion;
+
 public class Formulario extends JFrame {
     private JTextField nombreCortoField;
     private JTextField nombreField;
