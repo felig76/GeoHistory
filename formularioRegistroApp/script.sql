@@ -15,26 +15,33 @@ CREATE TABLE eventos (
     link VARCHAR(255) NOT NULL
 );
 
-CREATE DEFINER=`root`@`localhost` TRIGGER `before_insert_coordenadas` 
-BEFORE INSERT ON `eventos` 
-FOR EACH ROW 
-BEGIN 
-    DECLARE longitud FLOAT; 
-    DECLARE latitud FLOAT; 
-    DECLARE orden_relevancia INT; 
-    SET longitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', 1) AS FLOAT); 
-    SET latitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', -1) AS FLOAT); 
-    SET orden_relevancia = NEW.orden_relevancia; 
-    IF longitud < -90 OR longitud > 90 OR latitud < -90 OR latitud > 90 THEN 
-        SET longitud = 0.0000; 
-        SET latitud = 0.0000; 
-        SET NEW.coordenadas = CONCAT(CAST(latitud AS CHAR), ',', CAST(longitud AS CHAR)); 
-    END IF; 
+DELIMITER //
 
-    IF orden_relevancia < 1 OR orden_relevancia > 20 THEN 
-        SET NEW.orden_relevancia = 5; 
-    END IF; 
-END
+CREATE DEFINER=`root`@`localhost` TRIGGER `before_insert_coordenadas`
+BEFORE INSERT ON `eventos`
+FOR EACH ROW
+BEGIN
+    DECLARE longitud FLOAT;
+    DECLARE latitud FLOAT;
+    DECLARE orden_relevancia INT;
+    SET longitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', 1) AS FLOAT);
+    SET latitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', -1) AS FLOAT);
+    SET orden_relevancia = NEW.orden_relevancia;
+
+    IF longitud < -180 OR longitud > 180 OR latitud < -90 OR latitud > 90 THEN
+        SET longitud = 0.0000;
+        SET latitud = 0.0000;
+        SET NEW.coordenadas = CONCAT(CAST(latitud AS CHAR), ',', CAST(longitud AS CHAR));
+        SET NEW.nombre_corto = CONCAT(NEW.nombre_corto, ' (coordenadas incorrectas)');
+    END IF;
+
+    IF orden_relevancia < 1 OR orden_relevancia > 20 THEN
+        SET NEW.orden_relevancia = 5;
+    END IF;
+END//
+
+DELIMITER ;
+
 
 CREATE PROCEDURE `consultar_eventos`() NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER SELECT * FROM eventos;
 
