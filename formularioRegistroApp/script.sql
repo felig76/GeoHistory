@@ -15,23 +15,26 @@ CREATE TABLE eventos (
     link VARCHAR(255) NOT NULL
 );
 
-DECLARE longitud;
-DECLARE latitud;
+CREATE DEFINER=`root`@`localhost` TRIGGER `before_insert_coordenadas` 
+BEFORE INSERT ON `eventos` 
+FOR EACH ROW 
+BEGIN 
+    DECLARE longitud FLOAT; 
+    DECLARE latitud FLOAT; 
+    DECLARE orden_relevancia INT; 
+    SET longitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', 1) AS FLOAT); 
+    SET latitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', -1) AS FLOAT); 
+    SET orden_relevancia = NEW.orden_relevancia; 
+    IF longitud < -90 OR longitud > 90 OR latitud < -90 OR latitud > 90 THEN 
+        SET longitud = 0.0000; 
+        SET latitud = 0.0000; 
+        SET NEW.coordenadas = CONCAT(CAST(latitud AS CHAR), ',', CAST(longitud AS CHAR)); 
+    END IF; 
 
-SET longitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', 1) AS FLOAT);
-SET latitud = CAST(SUBSTRING_INDEX(NEW.coordenadas, ',', -1) AS FLOAT);
-
-IF longitud < -90 || longitud > 90 || latitud < -90 || latitud > 90 THEN
-	SET longitud = 0.0000;
-    SET latitud = 0.0000;
-END IF;
-
-DECLARE orden_relevancia;
-SET orden_relevancia = NEW.orden_relevancia;
-
-IF NEW.orden_relevancia < 1 || NEW.orden_relevancia > 20 THEN
-	SET orden_relevancia = 5;
-END IF;
+    IF orden_relevancia < 1 OR orden_relevancia > 20 THEN 
+        SET NEW.orden_relevancia = 5; 
+    END IF; 
+END
 
 CREATE PROCEDURE `consultar_eventos`() NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER SELECT * FROM eventos;
 
